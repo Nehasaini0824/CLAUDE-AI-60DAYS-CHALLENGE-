@@ -27,18 +27,13 @@ Prompt engineering is about providing clear instructions, context, and intent—
 
 Screenshots
 Prompt A Output
-
-![Prompt A](.IMG-20260605-WA0001/.png) 
-
-
+![Prompt A](IMG-20260605-WA0001.jpg)
 
 Prompt B Output
-
-![Prompt B](./b102d074-be81-4cd5-aa40-d620c4c4105a/.png)
+![Prompt B](b102d074-be81-4cd5-aa40-d620c4c4105a.png)
 
 Comparison 
-
-![Comparison](./IMG-20260605-WA0004/.png)
+![Comparison](IMG-20260605-WA0004.jpg)
 
 
 Conclusion
