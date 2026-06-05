@@ -29,7 +29,7 @@ Screenshots
 Prompt A Output
 
 ![Prompt A](./IMG-20260605-WA0001
-/promptA.png)
+/promptA.png) 
 
 
 
