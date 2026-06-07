@@ -126,10 +126,12 @@ It provides the best balance of speed, accuracy, reasoning quality, and producti
 ## Screenshots
 
 ### Personalized Claude Usage Strategy
-
+![models](03_when_to_use_models.png)
+![workflow](05_workflow_table.png)
 
 
 ### Key Learning 
+![key Learning](key_learnings.png)
 
 ---
 
