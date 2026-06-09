@@ -44,7 +44,28 @@ This project showcases how AI-assisted development can rapidly generate and enha
 
 Images
 
+profile
+![profile](IMG_20260609_210405.jpg)
 
+dashboard 
+![Dashboard](IMG_20260609_210424.jpg)
+
+food log
+![food log](IMG_20260609_210437.jpg)
+
+nutrients details 
+![Nutrients details](IMG_20260609_210450.jpg)
+
+recommendation 
+![Recommendation](IMG_20260609_210504.jpg)
+
+
+difference of prompt A & promot B
+![Difference](IMG-20260609-WA0038.jpg)
+
+
+Key Learnings
+![Key Learning](IMG-20260609-WA0039.jpg)
 
 
 
