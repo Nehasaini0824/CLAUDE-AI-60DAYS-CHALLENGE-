@@ -16,10 +16,10 @@ Every day of this challenge is pushing me closer to becoming a better Data Analy
 
 
 HTML file
-
+![HTML FILE](neha-saini-portfolio.html)
 
 Key Learning 
-
+![Key Learning](IMG-20260610-WA0047.jpg)
 
 
 
