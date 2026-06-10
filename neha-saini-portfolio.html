@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neha Saini — Data Science Enthusiast & GenAI Builder</title>
+  <meta name="description" content="Portfolio of Neha Saini — Aspiring Data Analyst passionate about AI, data analytics, and GenAI. Based in Ghaziabad, India." />
+  <meta name="keywords" content="Neha Saini, Data Analyst, Python, Power BI, MySQL, GenAI, Portfolio, Ghaziabad" />
+  <meta property="og:title" content="Neha Saini — Data Science & GenAI" />
+  <meta property="og:description" content="Aspiring Data Analyst building real-world skills through AI, analytics, and problem-solving." />
+  <meta property="og:type" content="website" />
+  <meta name="author" content="Neha Saini" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            navy: { 900: '#060B18', 800: '#0A0F1E', 700: '#111827', 600: '#1E2A4A' },
+            violet: { 400: '#A78BFA', 500: '#8B5CF6', 600: '#7C3AED', 700: '#6D28D9' },
+            cyan: { 400: '#22D3EE', 500: '#06B6D4', 600: '#0891B2' },
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease forwards',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp: { '0%': { opacity: '0', transform: 'translateY(24px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #060B18;
+      --bg2: #0A0F1E;
+      --bg3: #111827;
+      --surface: #1E2A4A;
+      --border: #2D3D5C;
+      --text: #F0F4FF;
+      --muted: #94A3B8;
+      --violet: #7C3AED;
+      --violet-light: #A78BFA;
+      --cyan: #06B6D4;
+      --cyan-light: #22D3EE;
+      --gradient: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
+    }
+    html.light {
+      --bg: #F8FAFF;
+      --bg2: #EEF2FF;
+      --bg3: #FFFFFF;
+      --surface: #E0E7FF;
+      --border: #C7D2FE;
+      --text: #0A0F1E;
+      --muted: #475569;
+      --violet: #6D28D9;
+      --violet-light: #7C3AED;
+      --cyan: #0891B2;
+      --cyan-light: #06B6D4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+
+    /* ---- Scrollbar ---- */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--violet); border-radius: 4px; }
+
+    /* ---- Nav ---- */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6, 11, 24, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    html.light #navbar {
+      background: rgba(248, 250, 255, 0.9);
+    }
+    .nav-link {
+      position: relative;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 4px 0;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--text); }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+
+    /* ---- Canvas particle bg ---- */
+    #particle-canvas {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ---- Hero ---- */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex; align-items: center;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .glow-violet { background: var(--violet); top: -10%; left: -10%; }
+    .glow-cyan { background: var(--cyan); bottom: -10%; right: -5%; }
+
+    /* ---- Typing cursor ---- */
+    .cursor {
+      display: inline-block;
+      width: 3px; height: 1.1em;
+      background: var(--violet-light);
+      border-radius: 2px;
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ---- Gradient text ---- */
+    .grad-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ---- Buttons ---- */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      background: var(--gradient);
+      color: #fff;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 27px;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 0.9rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn-outline:hover { border-color: var(--violet-light); color: var(--violet-light); transform: translateY(-2px); }
+
+    /* ---- Section ---- */
+    .section { padding: 96px 0; position: relative; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+    }
+    .section-title span { color: var(--violet-light); }
+
+    /* ---- Cards ---- */
+    .card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .card:hover { border-color: var(--violet); transform: translateY(-4px); }
+
+    /* ---- Skill bars ---- */
+    .skill-bar-track {
+      width: 100%; height: 6px;
+      background: var(--surface);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: var(--gradient);
+      width: 0;
+      transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ---- Tech tags ---- */
+    .tag {
+      display: inline-flex; align-items: center;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--surface);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tag:hover { color: var(--violet-light); border-color: var(--violet); }
+
+    /* ---- Project card gradient top ---- */
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 16px 16px 0 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card { position: relative; }
+    .project-card:hover::before { opacity: 1; }
+
+    /* ---- Social icon ---- */
+    .social-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-link:hover { border-color: var(--violet); color: var(--violet-light); background: rgba(124,58,237,0.1); }
+
+    /* ---- Contact input ---- */
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--violet); }
+    .form-input::placeholder { color: var(--muted); }
+
+    /* ---- Reveal on scroll ---- */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ---- Mobile menu ---- */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+
+    /* ---- Footer divider ---- */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ---- Toggle ---- */
+    .toggle-track {
+      width: 48px; height: 26px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle-thumb {
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 18px; height: 18px;
+      background: var(--violet-light);
+      border-radius: 50%;
+      transition: transform 0.25s ease;
+    }
+    html.light .toggle-thumb { transform: translateX(22px); }
+
+    /* ---- Stat card ---- */
+    .stat-card {
+      text-align: center;
+      padding: 24px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+    }
+
+    /* ---- Achievements ---- */
+    .achievement-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .achievement-icon {
+      flex-shrink: 0;
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ NAVBAR -->
+<nav id="navbar">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#hero" class="font-display font-700 text-lg" style="color:var(--text);text-decoration:none;">
+      <span class="grad-text">NS</span><span style="color:var(--muted);font-weight:400;font-size:0.8rem;margin-left:6px;">/ portfolio</span>
+    </a>
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#achievements" class="nav-link">Achievements</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <!-- Theme toggle -->
+      <div class="toggle-track" id="theme-toggle" title="Toggle theme">
+        <div class="toggle-thumb"></div>
+      </div>
+      <!-- Hamburger -->
+      <button id="hamburger" class="md:hidden p-2" style="color:var(--muted);background:none;border:none;cursor:pointer;">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden flex-col px-6 pb-5 gap-1" style="border-top:1px solid var(--border);margin-top:2px;">
+    <a href="#about"        class="nav-link py-2 block">About</a>
+    <a href="#skills"       class="nav-link py-2 block">Skills</a>
+    <a href="#projects"     class="nav-link py-2 block">Projects</a>
+    <a href="#achievements" class="nav-link py-2 block">Achievements</a>
+    <a href="#contact"      class="nav-link py-2 block">Contact</a>
+  </div>
+</nav>
+
+<!-- ============================================================ HERO -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-glow glow-violet"></div>
+  <div class="hero-glow glow-cyan"></div>
+  <div class="max-w-6xl mx-auto px-6 pt-24 pb-16 w-full relative z-10">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <!-- Text -->
+      <div class="flex-1 text-center md:text-left">
+        <div class="section-label mb-4">👋 Hello, World</div>
+        <h1 style="font-size:clamp(2.8rem,7vw,4.5rem);font-weight:700;line-height:1.1;color:var(--text);" class="mb-4">
+          I'm <span class="grad-text">Neha Saini</span>
+        </h1>
+        <div style="font-size:clamp(1.1rem,3vw,1.5rem);font-weight:500;color:var(--muted);min-height:2rem;" class="mb-6">
+          <span id="typed-text"></span><span class="cursor"></span>
+        </div>
+        <p style="max-width:520px;color:var(--muted);line-height:1.75;font-size:1rem;" class="mb-8 mx-auto md:mx-0">
+          Aspiring Data Analyst from <strong style="color:var(--text);">Ghaziabad, India</strong> — passionate about AI, analytics, and building solutions that turn data into decisions.
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start mb-8">
+          <a href="#contact" class="btn-primary">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Get In Touch
+          </a>
+          <a href="#projects" class="btn-outline">
+            View Projects
+          </a>
+        </div>
+        <!-- Social links -->
+        <div class="flex items-center gap-3 justify-center md:justify-start">
+          <a href="https://www.linkedin.com/in/neha-saini-b34073310" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/Nehasaini0824/CLAUDE-AI-60DAYS-CHALLENGE-" target="_blank" rel="noopener" class="social-link" title="GitHub">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="mailto:nsaanj@gmail.com" class="social-link" title="Email">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </a>
+          <span style="color:var(--border);font-size:1.2rem;">|</span>
+          <span style="font-size:0.8rem;color:var(--muted);">📍 Ghaziabad, India</span>
+        </div>
+      </div>
+      <!-- Avatar / Visual -->
+      <div class="flex-shrink-0 relative">
+        <div style="width:260px;height:260px;border-radius:50%;background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(6,182,212,0.2));border:2px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <!-- Stylized monogram avatar -->
+          <div style="width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,#7C3AED22,#06B6D422);display:flex;align-items:center;justify-content:center;flex-direction:column;">
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:5rem;font-weight:700;background:linear-gradient(135deg,#A78BFA,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;">NS</span>
+            <span style="font-size:0.7rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Data · AI · Code</span>
+          </div>
+          <!-- Orbiting badge -->
+          <div id="orbit-badge" style="position:absolute;width:52px;height:52px;border-radius:50%;background:var(--bg3);border:2px solid var(--violet);display:flex;align-items:center;justify-content:center;font-size:1.4rem;animation:orbit 8s linear infinite;top:10%;right:0;">
+            📊
+          </div>
+        </div>
+        <!-- Mini stat floats -->
+        <div style="position:absolute;bottom:-10px;left:-20px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:'Space Grotesk',sans-serif;">
+          <div style="font-size:1.2rem;font-weight:700;color:var(--violet-light);">2+</div>
+          <div style="font-size:0.7rem;color:var(--muted);">Projects</div>
+        </div>
+        <div style="position:absolute;top:10px;right:-30px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:'Space Grotesk',sans-serif;">
+          <div style="font-size:1.2rem;font-weight:700;color:var(--cyan);">AI</div>
+          <div style="font-size:0.7rem;color:var(--muted);">Builder</div>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="flex justify-center mt-16" style="opacity:0.5;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;animation:bounce 2s infinite;">
+        <span style="font-size:0.7rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;">scroll</span>
+        <svg width="16" height="16" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ABOUT -->
+<section id="about" class="section" style="background:var(--bg2);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row gap-16 items-start">
+      <!-- Left -->
+      <div class="flex-1 reveal">
+        <div class="section-label">01 / About</div>
+        <h2 class="section-title mb-6">Turning Data Into <span>Decisions</span></h2>
+        <p style="color:var(--muted);line-height:1.85;font-size:1rem;margin-bottom:16px;">
+          I'm an aspiring Data Analyst with a deep curiosity for how data can solve real-world problems. My journey into data science started with a fascination for patterns — and quickly grew into hands-on experience with Python, SQL, Power BI, and emerging GenAI tools.
+        </p>
+        <p style="color:var(--muted);line-height:1.85;font-size:1rem;margin-bottom:28px;">
+          Whether it's designing a student management system or building an online fashion store, I approach every project with structured thinking and a drive to deliver meaningful, measurable outcomes. I believe that the best data analysts aren't just number-crunchers — they're storytellers.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="tag">📍 Ghaziabad, India</span>
+          <span class="tag">🎓 Data Analytics</span>
+          <span class="tag">🤖 GenAI Enthusiast</span>
+          <span class="tag">🌱 Continuous Learner</span>
+        </div>
+      </div>
+      <!-- Right: stats -->
+      <div class="flex-shrink-0 w-full md:w-72 reveal reveal-delay-2">
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="stat-card">
+            <div class="stat-num grad-text">2+</div>
+            <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Projects Built</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" style="color:var(--cyan);">60</div>
+            <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Day AI Challenge</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" style="color:var(--violet-light);">∞</div>
+            <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Curiosity</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num grad-text">5+</div>
+            <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Tech Skills</div>
+          </div>
+        </div>
+        <a href="mailto:nsaanj@gmail.com" class="btn-primary w-full justify-center" style="width:100%;">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Download Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SKILLS -->
+<section id="skills" class="section" style="background:var(--bg);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label">02 / Skills</div>
+      <h2 class="section-title">What I <span>Work With</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Technical skills bars -->
+      <div class="reveal">
+        <h3 style="font-family:'Space Grotesk';font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+          <span style="width:28px;height:28px;border-radius:6px;background:rgba(124,58,237,0.2);display:inline-flex;align-items:center;justify-content:center;font-size:0.9rem;">💻</span>
+          Technical Proficiency
+        </h3>
+        <div class="flex flex-col gap-5" id="skill-bars">
+          <!-- Skills injected by JS -->
+        </div>
+      </div>
+      <!-- Tools & Soft Skills -->
+      <div class="reveal reveal-delay-2">
+        <h3 style="font-family:'Space Grotesk';font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+          <span style="width:28px;height:28px;border-radius:6px;background:rgba(6,182,212,0.2);display:inline-flex;align-items:center;justify-content:center;font-size:0.9rem;">🛠</span>
+          Tools & Stack
+        </h3>
+        <div class="flex flex-wrap gap-2 mb-10" id="tools-tags">
+          <!-- Injected by JS -->
+        </div>
+
+        <h3 style="font-family:'Space Grotesk';font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+          <span style="width:28px;height:28px;border-radius:6px;background:rgba(124,58,237,0.15);display:inline-flex;align-items:center;justify-content:center;font-size:0.9rem;">🤝</span>
+          Soft Skills
+        </h3>
+        <div class="flex flex-wrap gap-2" id="soft-tags">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PROJECTS -->
+<section id="projects" class="section" style="background:var(--bg2);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label">03 / Projects</div>
+      <h2 class="section-title">Things I've <span>Built</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6" id="projects-grid">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ACHIEVEMENTS -->
+<section id="achievements" class="section" style="background:var(--bg);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label">04 / Achievements</div>
+      <h2 class="section-title">Earned & <span>Recognized</span></h2>
+    </div>
+    <div class="max-w-3xl mx-auto" id="achievements-list">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CONTACT -->
+<section id="contact" class="section" style="background:var(--bg2);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label">05 / Contact</div>
+      <h2 class="section-title">Let's <span>Connect</span></h2>
+      <p style="color:var(--muted);max-width:480px;margin:12px auto 0;line-height:1.7;">
+        Open to opportunities, collaborations, and conversations about data, AI, or anything interesting.
+      </p>
+    </div>
+    <div class="flex flex-col md:flex-row gap-10 max-w-4xl mx-auto">
+      <!-- Contact info -->
+      <div class="flex-shrink-0 w-full md:w-64 reveal flex flex-col gap-4">
+        <div class="card flex items-center gap-4 py-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(124,58,237,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" fill="none" stroke="var(--violet-light)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Email</div>
+            <a href="mailto:nsaanj@gmail.com" style="font-size:0.85rem;color:var(--text);text-decoration:none;word-break:break-all;">nsaanj@gmail.com</a>
+          </div>
+        </div>
+        <div class="card flex items-center gap-4 py-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(6,182,212,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" fill="currentColor" style="color:var(--cyan);" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">LinkedIn</div>
+            <a href="https://www.linkedin.com/in/neha-saini-b34073310" target="_blank" style="font-size:0.85rem;color:var(--text);text-decoration:none;">Neha Saini</a>
+          </div>
+        </div>
+        <div class="card flex items-center gap-4 py-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(124,58,237,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" fill="currentColor" style="color:var(--violet-light);" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">GitHub</div>
+            <a href="https://github.com/Nehasaini0824" target="_blank" style="font-size:0.85rem;color:var(--text);text-decoration:none;">Nehasaini0824</a>
+          </div>
+        </div>
+        <div class="card flex items-center gap-4 py-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(6,182,212,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" fill="none" stroke="var(--cyan)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Location</div>
+            <span style="font-size:0.85rem;color:var(--text);">Ghaziabad, India</span>
+          </div>
+        </div>
+      </div>
+      <!-- Form -->
+      <div class="flex-1 reveal reveal-delay-2">
+        <div class="card" style="padding:32px;">
+          <div class="flex flex-col gap-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label style="display:block;font-size:0.8rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Your Name</label>
+                <input type="text" class="form-input" placeholder="Jane Doe" />
+              </div>
+              <div>
+                <label style="display:block;font-size:0.8rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Your Email</label>
+                <input type="email" class="form-input" placeholder="jane@example.com" />
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:0.8rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Subject</label>
+              <input type="text" class="form-input" placeholder="Project Collaboration / Opportunity" />
+            </div>
+            <div>
+              <label style="display:block;font-size:0.8rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Message</label>
+              <textarea class="form-input" rows="5" placeholder="Hello Neha, I'd love to discuss..." style="resize:vertical;"></textarea>
+            </div>
+            <button class="btn-primary" id="send-btn" style="width:100%;justify-content:center;margin-top:4px;">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+              Send Message
+            </button>
+            <div id="form-success" style="display:none;text-align:center;color:var(--cyan);font-size:0.85rem;font-weight:500;padding:8px;">
+              ✅ Message sent! (Opens your mail client)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FOOTER -->
+<footer style="background:var(--bg);padding:40px 24px;text-align:center;">
+  <div class="divider mb-8"></div>
+  <div style="font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;margin-bottom:8px;">
+    <span class="grad-text">Neha Saini</span>
+  </div>
+  <p style="color:var(--muted);font-size:0.85rem;margin-bottom:16px;">Data Science Enthusiast · GenAI Builder · Ghaziabad, India</p>
+  <div class="flex justify-center gap-3 mb-8">
+    <a href="https://www.linkedin.com/in/neha-saini-b34073310" target="_blank" class="social-link">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a href="https://github.com/Nehasaini0824" target="_blank" class="social-link">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+    <a href="mailto:nsaanj@gmail.com" class="social-link">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    </a>
+  </div>
+  <p style="font-size:0.75rem;color:var(--muted);">© 2025 Neha Saini · Built with ☕ and curiosity</p>
+</footer>
+
+<!-- ============================================================ JS -->
+<style>
+  @keyframes orbit {
+    0%   { transform: rotate(0deg)   translateX(130px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(6px); }
+  }
+</style>
+
+<script>
+// ---- DATA ----
+const skills = [
+  { name: 'Python',  pct: 80 },
+  { name: 'MySQL',   pct: 75 },
+  { name: 'Excel / VBA', pct: 85 },
+  { name: 'Power BI', pct: 70 },
+  { name: 'Data Analysis', pct: 78 },
+];
+const tools = ['VS Code','Power BI','MySQL Workbench','Excel','Jupyter Notebook','Google Colab','Git & GitHub','Canva'];
+const softSkills = ['Leadership','Communication','Time Management','Problem Solving','Continuous Learning','Team Collaboration'];
+const projects = [
+  {
+    title: 'Fashion Store',
+    emoji: '👗',
+    desc: 'Designed and developed a fully functional online fashion retail store with product listings, category filters, and a shopping experience optimized for mobile users. Demonstrated end-to-end product management and front-end design thinking.',
+    tags: ['HTML','CSS','JavaScript','MySQL'],
+    link: '#',
+    accent: '#7C3AED',
+  },
+  {
+    title: 'Student Management System',
+    emoji: '🎓',
+    desc: 'Built a robust Student Management System using MySQL to record, query, and manage complete student records — including personal details, academic performance, and enrollment data. Designed efficient relational schemas for scalable data retrieval.',
+    tags: ['MySQL','Python','CRUD','Database Design'],
+    link: '#',
+    accent: '#06B6D4',
+  },
+];
+const achievements = [
+  {
+    icon: '🏅',
+    title: 'Certified Data Analyst',
+    desc: 'Completed a professional Data Analyst certification, demonstrating proficiency in data wrangling, visualization, and reporting techniques using industry-standard tools.',
+    color: 'rgba(124,58,237,0.2)',
+    year: '2024',
+  },
+  {
+    icon: '⭐',
+    title: 'Meritorious Student Award',
+    desc: 'Recognized for exceptional academic performance and consistent excellence, reflecting a strong work ethic and commitment to learning outcomes.',
+    color: 'rgba(6,182,212,0.2)',
+    year: '2024',
+  },
+  {
+    icon: '🚀',
+    title: 'Claude AI 60-Day Challenge',
+    desc: 'Actively participating in a 60-day AI challenge on GitHub, building real-world GenAI projects and documenting growth through hands-on experimentation.',
+    color: 'rgba(124,58,237,0.15)',
+    year: '2025',
+  },
+];
+const typedStrings = [
+  'Data Science Enthusiast',
+  'GenAI Builder',
+  'Python Developer',
+  'Power BI Analyst',
+  'Continuous Learner',
+];
+
+// ---- THEME TOGGLE ----
+const html = document.documentElement;
+const toggle = document.getElementById('theme-toggle');
+// Default dark
+let isDark = true;
+toggle.addEventListener('click', () => {
+  isDark = !isDark;
+  if (isDark) { html.classList.remove('light'); html.classList.add('dark'); }
+  else { html.classList.remove('dark'); html.classList.add('light'); }
+});
+
+// ---- HAMBURGER ----
+document.getElementById('hamburger').addEventListener('click', () => {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('open');
+});
+document.querySelectorAll('#mobile-menu .nav-link').forEach(l => {
+  l.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+});
+
+// ---- ACTIVE NAV ----
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => observer.observe(s));
+
+// ---- REVEAL ON SCROLL ----
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+reveals.forEach(r => revealObs.observe(r));
+
+// ---- TYPING ANIMATION ----
+let si = 0, ci = 0, isDeleting = false;
+const typedEl = document.getElementById('typed-text');
+function type() {
+  const current = typedStrings[si];
+  typedEl.textContent = isDeleting ? current.slice(0, ci--) : current.slice(0, ci++);
+  let delay = isDeleting ? 50 : 80;
+  if (!isDeleting && ci === current.length + 1) { delay = 1800; isDeleting = true; }
+  else if (isDeleting && ci < 0) { isDeleting = false; si = (si + 1) % typedStrings.length; ci = 0; delay = 300; }
+  setTimeout(type, delay);
+}
+type();
+
+// ---- RENDER SKILLS ----
+const barsContainer = document.getElementById('skill-bars');
+skills.forEach(s => {
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+      <span style="font-size:0.875rem;font-weight:500;color:var(--text);">${s.name}</span>
+      <span style="font-size:0.8rem;color:var(--muted);">${s.pct}%</span>
+    </div>
+    <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="${s.pct}"></div></div>`;
+  barsContainer.appendChild(div);
+});
+
+// Animate skill bars on scroll
+const skillSection = document.getElementById('skills');
+const skillObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+    skillObs.disconnect();
+  }
+}, { threshold: 0.3 });
+skillObs.observe(skillSection);
+
+// ---- RENDER TOOLS ----
+const toolsContainer = document.getElementById('tools-tags');
+tools.forEach(t => {
+  const span = document.createElement('span');
+  span.className = 'tag';
+  span.textContent = t;
+  toolsContainer.appendChild(span);
+});
+const softContainer = document.getElementById('soft-tags');
+const softEmojis = ['👥','💬','⏱️','🔍','📚','🤝'];
+softSkills.forEach((s, i) => {
+  const span = document.createElement('span');
+  span.className = 'tag';
+  span.textContent = `${softEmojis[i]} ${s}`;
+  softContainer.appendChild(span);
+});
+
+// ---- RENDER PROJECTS ----
+const projGrid = document.getElementById('projects-grid');
+projects.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = `card project-card reveal${i>0?' reveal-delay-2':''}`;
+  card.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+      <span style="font-size:2.5rem;">${p.emoji}</span>
+      <a href="${p.link}" style="width:36px;height:36px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='var(--violet-light)';this.style.borderColor='var(--violet)';" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)';">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+    </div>
+    <h3 style="font-family:'Space Grotesk';font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:10px;">${p.title}</h3>
+    <p style="color:var(--muted);font-size:0.875rem;line-height:1.7;margin-bottom:16px;">${p.desc}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+      ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+    </div>`;
+  projGrid.appendChild(card);
+  revealObs.observe(card);
+});
+
+// ---- RENDER ACHIEVEMENTS ----
+const achList = document.getElementById('achievements-list');
+achievements.forEach((a, i) => {
+  const item = document.createElement('div');
+  item.className = `achievement-item reveal${i>0?` reveal-delay-${i}`:''}`;
+  item.innerHTML = `
+    <div class="achievement-icon" style="background:${a.color};">
+      <span style="font-size:1.4rem;">${a.icon}</span>
+    </div>
+    <div style="flex:1;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <h4 style="font-family:'Space Grotesk';font-size:1rem;font-weight:600;color:var(--text);">${a.title}</h4>
+        <span style="font-size:0.72rem;padding:2px 10px;border-radius:99px;background:var(--surface);color:var(--muted);border:1px solid var(--border);">${a.year}</span>
+      </div>
+      <p style="color:var(--muted);font-size:0.875rem;line-height:1.65;">${a.desc}</p>
+    </div>`;
+  achList.appendChild(item);
+  revealObs.observe(item);
+});
+
+// ---- CONTACT FORM ----
+document.getElementById('send-btn').addEventListener('click', () => {
+  const inputs = document.querySelectorAll('.form-input');
+  const name = inputs[0].value.trim();
+  const email = inputs[1].value.trim();
+  const subject = inputs[2].value.trim();
+  const message = inputs[3].value.trim();
+  if (!name || !email || !message) { alert('Please fill in at least your name, email, and message.'); return; }
+  const mailto = `mailto:nsaanj@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`Hi Neha,\n\nMy name is ${name}.\n\n${message}\n\n— ${name}\n${email}`)}`;
+  window.location.href = mailto;
+  document.getElementById('form-success').style.display = 'block';
+});
+
+// ---- PARTICLE CANVAS ----
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+function rand(a, b) { return Math.random() * (b - a) + a; }
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = rand(0, W);
+    this.y = rand(0, H);
+    this.r = rand(1, 3);
+    this.vx = rand(-0.3, 0.3);
+    this.vy = rand(-0.3, 0.3);
+    this.alpha = rand(0.1, 0.5);
+    this.color = Math.random() > 0.5 ? '124,58,237' : '6,182,212';
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${this.color},${this.alpha})`;
+    ctx.fill();
+  }
+}
+for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(124,58,237,${0.06 * (1 - dist/120)})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLines();
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
