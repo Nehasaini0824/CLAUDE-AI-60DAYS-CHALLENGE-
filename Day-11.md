@@ -62,6 +62,7 @@ Key Learning
 
 ATS resume
 
-![ATS resume](Neha_Saini_ATS_Resume (1).docx)
+ATS resume ![ATS resume](Neha_Saini_ATS_Resume (2).docx) 
+
 
 Every resume tells a story. The goal is to make sure both ATS systems and recruiters can clearly understand and appreciate that story
