@@ -17,20 +17,17 @@ This exercise highlighted that effective prompting isn't just about generating c
 
 Screenshot 
 
+![1](IMG-20260613-WA0127.jpg)
 
+![2](IMG-20260613-WA0126.jpg)
 
-
-
-
+![3](IMG-20260613-WA0128.jpg)
 
 
 
 Key Learning 
 
-
-
-
-
+![key Learning](IMG-20260613-WA0129.jpg)
 
 💡 Key Learning:
 The quality of outputs depends on the quality of inputs. A well-structured prompt can turn AI into a powerful career strategist.
