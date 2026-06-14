@@ -14,7 +14,16 @@ Today, I built an AI-powered Job Red Flag Detector that helps job seekers analyz
 
 
 Screenshots
+![one](IMG-20260614-WA0017.jpg)
 
+![two](IMG-20260614-WA0018.jpg)
+
+![three](IMG-20260614-WA0019.jpg)
+
+
+Key Learning 
+
+![key Learning](IMG-20260614-WA0020.jpg)
 
 
 
