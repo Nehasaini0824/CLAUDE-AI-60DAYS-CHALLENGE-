@@ -24,7 +24,13 @@ Today, I created an advanced AI prompt that transforms an AI model into a Vedic 
 
 
 
+![profile](neha_astro_linkedin.png)
 
+
+
+Key Learning 
+
+![key Learning](IMG-20260615-WA0010.jpg)
 
 
 
