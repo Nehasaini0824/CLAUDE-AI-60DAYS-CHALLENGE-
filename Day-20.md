@@ -21,7 +21,11 @@ Problem Solving
 Performance Optimization
 
 screenshots
+![first](IMG-20260620-WA0012.jpg)
 
+![second](IMG-20260620-WA0011.jpg)
+
+![Third](IMG-20260620-WA0010.jpg)
 
 
 Building projects like this helps transform theoretical knowledge into practical experience and enhances creativity in application development.
