@@ -21,9 +21,13 @@ Problem Solving
 Performance Optimization
 
 screenshots
+one
 ![first](IMG-20260620-WA0012.jpg)
 
+two 
 ![second](IMG-20260620-WA0011.jpg)
+
+three 
 
 ![Third](IMG-20260620-WA0010.jpg)
 
