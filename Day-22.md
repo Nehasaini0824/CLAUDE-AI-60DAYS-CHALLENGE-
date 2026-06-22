@@ -23,7 +23,8 @@ The analysis included:
 
 
 screenshot
-
+Valuation report
+![validation report](IMG-20260622-WA0007.jpg)
 
 
 
