@@ -21,7 +21,6 @@ Today, I challenged AI to build a Prior Authorization Workflow Simulator—a ful
 Screenshot 
 
 First
-
 ![first](IMG-20260626-WA0002.jpg)
 
 Second
