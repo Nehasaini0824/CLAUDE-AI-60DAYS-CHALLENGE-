@@ -25,7 +25,12 @@ From a technical perspective, this project was built as:
 
 
 Screenshots
+First
 
+![first](IMG-20260627-WA0008.jpg)
+
+Second
+![second](IMG-20260627-WA0007.jpg)
 
 
 
