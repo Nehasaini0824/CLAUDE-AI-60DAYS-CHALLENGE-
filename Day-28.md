@@ -18,7 +18,8 @@ Today I built a Hospital Admission Readiness Simulator—an interactive healthca
 Screenshot 
 
 
-
+Image
+![ report](IMG-20260628-WA0049.jpg)
 
 
 
