@@ -25,7 +25,8 @@ Every decision includes:
 
 Screenshot 
 
-
+Image
+![ report](IMG-20260629-WA0004.jpg)
 
 
 The entire project is built as a single-file React application using only HTML, CSS, JavaScript, and React via CDN—no backend, no external APIs, and fully offline capable.
