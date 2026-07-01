@@ -34,7 +34,18 @@ Some actions create delayed consequences, just like real-world operations.
 
 screenshot
 
+First
 
+![first](Screenshot_20260701_205610.jpg)
+
+Second
+![second](Screenshot_20260701_205633.jpg)
+
+Third 
+![Third](Screenshot_20260701_205651.jpg)
+
+Fourth
+![fourth](Screenshot_20260701_205647.jpg)
 
 
 
