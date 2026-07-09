@@ -11,3 +11,5 @@ Part of my ongoing Claude AI 60-Day Challenge — building interactive decision 
 Curious how others would route #TC-222 (grant deadline at risk) or #TC-229 (cheating during finals) — drop your call below 👇
 
 screenshot 
+Image
+![ report](IMG-20260709-WA0021.jpg)
