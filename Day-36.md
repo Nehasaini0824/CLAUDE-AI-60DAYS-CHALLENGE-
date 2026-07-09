@@ -17,3 +17,5 @@ It's a small case study in using game-like mechanics to make self-awareness feel
 
 
 screenshot 
+Image
+![ report](IMG-20260709-WA0020.jpg)
