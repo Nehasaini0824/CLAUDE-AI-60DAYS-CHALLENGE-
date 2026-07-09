@@ -18,7 +18,8 @@ Marketing isn't about having a tool that writes for you — it's about learning 
 
 screenshot
 
-
+Image
+![ report](IMG-20260709-WA0015.jpg)
 
 
 Anil Bajpai | ABTalksOnAI | Anthropic 
