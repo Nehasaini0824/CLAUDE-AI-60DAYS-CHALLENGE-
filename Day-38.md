@@ -18,3 +18,5 @@ Anil Bajpai | ABTalksOnAI | Anthropic
 
 screenshot 
 
+Image
+![ report](IMG-20260710-WA0001.jpg)
