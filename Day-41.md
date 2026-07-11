@@ -19,6 +19,10 @@ The goal was to move beyond static tutorials and create a fully interactive educ
 📖 Additional learning resources, books, communities, and documentation
 
 Screenshot 
+Image
+![ report](IMG-20260711-WA0013.jpg)
+
+
 
 For this implementation, the platform teaches Python Data Structures, covering:
 
