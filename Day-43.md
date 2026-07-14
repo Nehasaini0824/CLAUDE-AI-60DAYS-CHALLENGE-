@@ -22,7 +22,18 @@ Instead of generating generic checklists, this application maps an entire workfl
 
 screenshots
 
+First
 
+![first](Screenshot_20260714_204935.jpg)
+
+Second
+![second](Screenshot_20260714_204942.jpg)
+
+Third 
+![Third](Screenshot_20260714_204949.jpg)
+
+Fourth
+![fourth](Screenshot_20260714_205020.jpg)
 
 
 
