@@ -16,7 +16,8 @@ Most people make important career and life decisions based on emotions, assumpti
 
 
 screenshot
-
+Image
+![ report](IMG-20260715-WA0003.jpg)
 
 
 💡 Key Learning:
