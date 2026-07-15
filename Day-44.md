@@ -25,7 +25,8 @@ The example audit in this project transformed a profile score from 30/100 → 76
 
 Screenshot 
 
-
+Image
+![ report](IMG-20260715-WA0002.jpg)
 
 Key Learning 💡
 Most LinkedIn profiles fail not because people lack skills, but because they fail to communicate value quickly. Recruiters spend only a few seconds scanning a profile before deciding whether to continue.
