@@ -35,7 +35,8 @@ This creates a self-refining workflow where outputs improve over time rather tha
 
 Screenshot 
 
-
+Image
+![ report](IMG-20260716-WA0004.jpg)
 
 
 🎯 What I Learned
