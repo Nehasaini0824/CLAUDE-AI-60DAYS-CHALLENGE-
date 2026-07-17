@@ -7,7 +7,8 @@ Whether it's a LinkedIn post, YouTube thumbnail, Instagram carousel, blog articl
 
 
 screenshot 
-
+Image
+![ report](IMG-20260717-WA0005.jpg)
 
 
 ✨ Key Features
