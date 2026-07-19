@@ -18,7 +18,8 @@ Some of the features include:
 
 screenshot
 
-
+Image
+![ report](IMG-20260719-WA0009.jpg)
 
 
 The biggest lesson from today's challenge:
