@@ -7,7 +7,8 @@ For Day 50 of #60DayClaudeAIChallenge, I designed Defend Your Experience—an AI
 Instead of suggesting better wording, it acts like a skeptical interviewer and challenges every claim on your resume until you can confidently defend it.
 
 Screenshot 
-
+Image
+![ report](IMG-20260720-WA0003.jpg)
 
 
 
