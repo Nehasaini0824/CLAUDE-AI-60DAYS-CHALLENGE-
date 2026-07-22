@@ -17,7 +17,8 @@ Instead of overwhelming users with endless charts, the focus is on helping them 
 
 Screenshot
 
-
+Image
+![ report](IMG-20260722-WA0002.jpg)
 
 This project is being planned as a polished SaaS-style product that showcases data storytelling, business intelligence, and user-centric design while staying achievable within a 10-day capstone.
 
