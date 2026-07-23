@@ -24,7 +24,8 @@ I designed the complete foundation for SkillPath— a Personal Career & Skills D
 
 Screenshot 
 
-
+Image
+![ report](IMG-20260723-WA0000.jpg)
 
 
 💡 Key Learning
